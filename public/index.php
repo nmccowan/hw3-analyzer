@@ -137,16 +137,6 @@ $processingTime = round(($endTime - $startTime) * 1000, 2);
     <body>
         <header></header>
         <main>
-            <form action="index.php" method="POST" enctype="multipart/form-data">
-                Input <input type="file" id="picker" name="jsonFile" accept=".geojson , .json"/>
-                Button <button type="submit">Submit</button>
-            </form>
-
-            <?php if (!empty($errorMessage)): ?>
-                <div>
-                    Error Processing File: <?php echo $errorMessage; ?>
-                </div>
-            <?php endif; ?>
         <div>
         <ol>
             <li id="q1">What was the total number of reported crime incidents in 2025?<strong><?php echo isset($stats) ? htmlspecialchars($stats['q1']) : ''; ?></strong></li>
@@ -161,6 +151,17 @@ $processingTime = round(($endTime - $startTime) * 1000, 2);
             <li id="q10">Which month had the most crimes reported?<strong><?php echo isset($stats) ? htmlspecialchars($stats['q10']) : ''; ?></strong></li>
         </ol>
         </div>
+
+        <form action="index.php" method="POST" enctype="multipart/form-data">
+            Input <input type="file" id="picker" name="jsonFile" accept=".geojson , .json"/>
+            Button <button type="submit">Submit</button>
+        </form>
+        
+        <?php if (!empty($errorMessage)): ?>
+            <div>
+                Error Processing File: <?php echo $errorMessage; ?>
+            </div>
+        <?php endif; ?>
 
         <div id="processing-info">
             <?php if (isset($stats)): ?>
