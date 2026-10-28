@@ -153,8 +153,8 @@ $processingTime = round(($endTime - $startTime) * 1000, 2);
         </div>
 
         <form action="index.php" method="POST" enctype="multipart/form-data">
-            Input <input type="file" id="picker" name="jsonFile" accept=".geojson , .json"/>
-            Button <button type="submit">Submit</button>
+            <input type="file" id="picker" name="jsonFile" accept=".geojson , .json"/>
+            <button type="submit">Submit</button>
         </form>
         
         <?php if (!empty($errorMessage)): ?>
