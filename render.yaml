@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: hw3-analyzer
+    runtime: docker
+    plan: free
+    healthCheckPath: /

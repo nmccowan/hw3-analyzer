@@ -1,0 +1,10 @@
+1 - what was the total number of reported crime incidents in 2025
+2 - what police service area reported the most crimes?
+3 - what was the most common offense?
+4 - what was the most common method?
+5 - what police service area reported the least crimes?
+6 - what was the least common offense?
+7 - what was the least common method?
+8 - which shift received the most amount of criminal activity?
+9 - which shift received the least amount of criminal activity?
+10 - Which month had the most crimes reported?
