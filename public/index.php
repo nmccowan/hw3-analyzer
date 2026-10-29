@@ -113,7 +113,10 @@ $stats = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        if (!isset($_FILES['jsonFile'])) {
+        if (!isset($_FILES['jsonFile']) || $_FILES['jsonFile']['error'] === UPLOAD_ERR_NO_FILE) {
+            if (empty($_FILES) && isset($_SERVER['CONTENT_LENGTH']) && $_SERVER['CONTENT_LENGTH'] > 0) {
+                throw new Exception("The uploaded file exceeds the server's post_max_size limit.");
+            }
             throw new Exception("No file was uploaded.");
         }
 
