@@ -113,8 +113,17 @@ $stats = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        if (!isset($_FILES['jsonFile']) || $_FILES['jsonFile']['error'] !== UPLOAD_ERR_OK) {
-            throw new Exception("Please upload a valid JSON file.");
+        if (!isset($_FILES['jsonFile'])) {
+            throw new Exception("No file was uploaded.");
+        }
+
+        $errorCode = $_FILES['jsonFile']['error'];
+        if ($errorCode !== UPLOAD_ERR_OK) {
+            if ($errorCode === UPLOAD_ERR_INI_SIZE || $errorCode === UPLOAD_ERR_FORM_SIZE) {
+                throw new Exception("The uploaded file is too large for the server's file size limit.");
+            } else {
+                throw new Exception("Upload failed with error code: " . $errorCode);
+            }
         }
 
         $fileContent = file_get_contents($_FILES['jsonFile']['tmp_name']);
