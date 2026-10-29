@@ -9,10 +9,14 @@ class analyzer {
             throw new Exception("Invalid JSON file.");
         }
 
-        if (is_array($data)) {
+        if (isset($data['features']) && is_array($data['features'])) {
+            $this->records = $data['features'];
+        } elseif (isset($data['records']) && is_array($data['records'])) {
+            $this->records = $data['records'];
+        } elseif (is_array($data)) {
             $this->records = $data;
         } else {
-            $this->records = $data['features'] ?? $data['records'] ?? [];
+            $this->records = [];
         }
 
         if (empty($this->records)) {
