@@ -83,9 +83,12 @@ class analyzer {
             }
             $monthMap[$monthName] = ($monthMap[$monthName] ?? 0) + 1;
         }
+
+        $janTotal = $monthMap['January'] ?? 0;
+        $janDailyAvg = round($janTotal/31, 2);
         
         return [
-            'q1' => count($this->records),
+            'q1' => $janDailyAvg,
             'q2' => $this->getExtremes($psaMap, true),
             'q3' => $this->getExtremes($offenseMap, true),
             'q4' => $this->getExtremes($methodMap, true),
@@ -139,7 +142,7 @@ $processingTime = round(($endTime - $startTime) * 1000, 2);
         <main>
         <div>
         <ol>
-            <li id="q1">What was the total number of reported crime incidents in 2025?<strong><?php echo isset($stats) ? htmlspecialchars($stats['q1']) : ''; ?></strong></li>
+            <li id="q1">What was the averge number of reported crime incidents per day in January?<strong><?php echo isset($stats) ? htmlspecialchars($stats['q1']) : ''; ?></strong></li>
             <li id="q2">What police service area reported the most crimes?<strong><?php echo isset($stats) ? htmlspecialchars($stats['q2']) : ''; ?></strong></li>
             <li id="q3">What was the most common offense?<strong><?php echo isset($stats) ? htmlspecialchars($stats['q3']) : ''; ?></strong></li>
             <li id="q4">What was the most common method?<strong><?php echo isset($stats) ? htmlspecialchars($stats['q4']) : ''; ?></strong></li>
